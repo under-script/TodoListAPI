@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'drf_spectacular',
     'drf_spectacular_sidecar',
     "debug_toolbar",
+    'django_filters',
 
     # custom apps
     'todo_api.apps.TodoApiConfig',
@@ -145,6 +146,11 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ],
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+        'rest_framework.filters.OrderingFilter',
+        'rest_framework.filters.SearchFilter',
+    ),
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',  # drf-spectacular settings
     'DEFAULT_PAGINATION_CLASS': 'todo_api.pagination.CustomPagination',
     'PAGE_SIZE': 10,
